@@ -3,9 +3,10 @@ public class HandCleaner {
     private int quantity, quantityRemaining, alcoholPercentage;
     private double price;
 
-    public HandCleaner(String brand, int quatity, int alcoholPercentage, double price) {
+    public HandCleaner(String brand, int quantity, int alcoholPercentage, double price) {
         setBrand(brand);
         setQuantity(quantity);
+        setQuantityRemaining(quantity);
         setAlcoholPercentage(alcoholPercentage);
         setPrice(price);
     }
@@ -15,7 +16,7 @@ public class HandCleaner {
     }
 
     public void setBrand(String brand) {
-        if (brand.isBlank())
+        if (brand.trim().isEmpty())
             throw new IllegalArgumentException("brand cannot be blank");
         else
             this.brand = brand;
@@ -81,5 +82,11 @@ public class HandCleaner {
         int pumpAmount = quantityRemaining;
         quantityRemaining=0;
         return pumpAmount;
+    }
+
+    public String toString()
+    {
+        return String.format("%s, bottle volume: %d ml, amount remaining: %d ml,  price: $%.2f",
+                brand, quantity, quantityRemaining, price);
     }
 }
